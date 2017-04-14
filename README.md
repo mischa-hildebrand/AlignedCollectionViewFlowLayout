@@ -21,8 +21,8 @@ Add the file `AlignedCollectionViewFlowLayout.swift` to your Xcode project and y
 
 5. _(Optional)_ If you want your cells to be **right-aligned** just add the following code to your view controller's `viewDidLoad()` method:
 
-        let flowLayout = collectionView?.collectionViewLayout as? AlignedCollectionViewFlowLayout
-        flowLayout?.cellAlignment = .right
+        let alignedFlowLayout = collectionView?.collectionViewLayout as? AlignedCollectionViewFlowLayout
+        alignedFlowLayout?.cellAlignment = .right
 
 ### Setup in code
 
@@ -41,5 +41,17 @@ Add the file `AlignedCollectionViewFlowLayout.swift` to your Xcode project and y
 3. Implement your collection view's data source.
 
 4. Run the app.
+
+### Additional configuration
+
+`AlignedCollectionViewFlowLayout` always distributes the cells horizontally with a constant spacing which is the same for all rows. You can control the spacing with the `minimumInteritemSpacing` property.
+
+    alignedFlowLayout.minimumInteritemSpacing = 10
+    
+Despite its name (which originates from its superclass `UICollectionViewFlowLayout`) this property doesn't describe a _minimum_ spacing but the **exact** spacing between the cells.
+
+The vertical spacing between the lines works exactly as in `UICollectionViewFlowLayout`:
+
+    alignedFlowLayout.minimumLineSpacing = 10
 
 ### Enjoy! 😎
