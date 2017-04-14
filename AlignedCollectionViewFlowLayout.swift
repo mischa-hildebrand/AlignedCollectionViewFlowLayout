@@ -71,6 +71,18 @@ class AlignedCollectionViewFlowLayout: UICollectionViewFlowLayout {
     }
     
     
+    // MARK: - 👶 Initialization
+    
+    init(cellAlignment: HorizontalAlignment = .left) {
+        super.init()
+        self.cellAlignment = cellAlignment
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
+    
     // MARK: - 🅾️ Overrides
     
     override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
