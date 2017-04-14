@@ -11,11 +11,11 @@ Add the file `AlignedCollectionViewFlowLayout.swift` to your Xcode project and y
 
 2. In the Document Outline, select the collection view layout object.
 
-![Screenshot of the Flow Layout object in Interface Builder](Screenshot_Interface-Builder_Flow-Layout-Object.png)
+    ![Screenshot of the Flow Layout object in Interface Builder](Screenshot_Interface-Builder_Flow-Layout-Object.png)
 
 3. In the Identity Inspector, set the layout object's custom class to `AlignedCollectionViewFlowLayout`.
 
-![Screenshot: How to set a custom class for the layout object in Interface Builder](Screenshot_Interface-Builder_Flow-Layout_Custom-Class.png)
+    ![Screenshot: How to set a custom class for the layout object in Interface Builder](Screenshot_Interface-Builder_Flow-Layout_Custom-Class.png)
 
 4. Run your app. Your cells will now be left-aligned.
 
