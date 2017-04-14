@@ -34,7 +34,7 @@ Add the file `AlignedCollectionViewFlowLayout.swift` to your Xcode project and y
 
         let collectionView = UICollectionView(frame: bounds, collectionViewLayout: flowLayout)
      
-   or assign `alignedFlowLayout` to the `collectionViewLayout` property of an existing collection view:
+   **or** assign `alignedFlowLayout` to the `collectionViewLayout` property of an existing collection view:
    
         yourExistingCollectionView.collectionViewLayout = alignedFlowLayout
         
