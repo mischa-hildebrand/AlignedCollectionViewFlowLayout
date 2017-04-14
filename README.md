@@ -1,5 +1,5 @@
 # AlignedCollectionViewFlowLayout
-A collection view layout that aligns the cells left or right, just like left- or right-aligned text in a document.
+A collection view layout that aligns the cells left or right with a constant spacing between the cells, just like left- or right-aligned text in a document. Other than that, the layout behaves exactly like Apple's [`UICollectionViewFlowLayout`](https://developer.apple.com/reference/uikit/uicollectionviewflowlayout).
 
 ## Usage
 
