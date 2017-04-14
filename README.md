@@ -42,6 +42,8 @@ Add the file `AlignedCollectionViewFlowLayout.swift` to your Xcode project and y
 
 4. Run the app.
 
+---
+
 ### Additional configuration
 
 `AlignedCollectionViewFlowLayout` always distributes the cells horizontally with a constant spacing which is the same for all rows. You can control the spacing with the `minimumInteritemSpacing` property.
@@ -53,5 +55,7 @@ Despite its name (which originates from its superclass `UICollectionViewFlowLayo
 The vertical spacing between the lines works exactly as in `UICollectionViewFlowLayout`:
 
     alignedFlowLayout.minimumLineSpacing = 10
+    
+---
 
 ### Enjoy! 😎
