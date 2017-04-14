@@ -97,9 +97,10 @@ class AlignedCollectionViewFlowLayout: UICollectionViewFlowLayout {
         //    is not always left-aligned and the last item in a line is not always right-aligned:
         //    If there is only one item in a line UICollectionViewFlowLayout will center it.
         
-        guard let layoutAttributes = super.layoutAttributesForItem(at: indexPath),
+        // We may not change the original layout attributes or UICollectionViewFlowLayout might complain.
+        guard let layoutAttributes = super.layoutAttributesForItem(at: indexPath)?.copy() as? UICollectionViewLayoutAttributes,
             let alignmentAxis = alignmentAxis else {
-            return nil
+                return nil
         }
         
         if layoutAttributes.representsClosestItemToAlignmentAxis(collectionViewLayout: self) {
@@ -113,7 +114,8 @@ class AlignedCollectionViewFlowLayout: UICollectionViewFlowLayout {
     }
     
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
-        let layoutAttributesObjects = super.layoutAttributesForElements(in: rect)
+        // We may not change the original layout attributes or UICollectionViewFlowLayout might complain.
+        let layoutAttributesObjects = copy(super.layoutAttributesForElements(in: rect))
         layoutAttributesObjects?.forEach({ (layoutAttributes) in
             setFrame(forLayoutAttributes: layoutAttributes)
         })
@@ -183,6 +185,14 @@ class AlignedCollectionViewFlowLayout: UICollectionViewFlowLayout {
         return lineFrame.intersects(secondItemAttributes.frame)
     }
     
+    /// Creates a deep copy of the passed array by copying all its items.
+    ///
+    /// - Parameter layoutAttributesArray: The array to be copied.
+    /// - Returns: A deep copy of the passed array.
+    private func copy(_ layoutAttributesArray: [UICollectionViewLayoutAttributes]?) -> [UICollectionViewLayoutAttributes]? {
+        return layoutAttributesArray?.map{ $0.copy() } as? [UICollectionViewLayoutAttributes]
+    }
+    
 }
 
 
@@ -190,11 +200,11 @@ class AlignedCollectionViewFlowLayout: UICollectionViewFlowLayout {
 
 extension UICollectionViewLayoutAttributes {
     
-    /// Checks if the cell represented by this attributes object 
+    /// Checks if the cell represented by this attributes object
     /// is the one closest to the alignment axis in this line.
     ///
     /// - Parameter collectionViewLayout: The collection view layout that defines the cell alignment etc.
-    /// - Returns: `true` if there is no other cell between the layout axis 
+    /// - Returns: `true` if there is no other cell between the layout axis
     ///            and the cell represented by this attribute, else `false`.
     fileprivate func representsClosestItemToAlignmentAxis(collectionViewLayout: AlignedCollectionViewFlowLayout) -> Bool {
         
