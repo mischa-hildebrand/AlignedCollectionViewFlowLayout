@@ -1,6 +1,17 @@
 # AlignedCollectionViewFlowLayout
 A collection view layout that aligns the cells left or right with a constant spacing between the cells, just like left- or right-aligned text in a document. Other than that, the layout behaves exactly like Apple's [`UICollectionViewFlowLayout`](https://developer.apple.com/reference/uikit/uicollectionviewflowlayout).
 
+## Available Alignment Options:
+
+* `cellAlignment = .left`
+
+![Example layout for cellAlignment = .left](Left-aligned-collection-view-layout.png)
+
+* `cellAlignment = .right`
+
+![Example layout for cellAlignment = .right](Right-aligned-collection-view-layout.png)
+
+
 ## Usage
 
 Add the file `AlignedCollectionViewFlowLayout.swift` to your Xcode project and you're ready to go:
