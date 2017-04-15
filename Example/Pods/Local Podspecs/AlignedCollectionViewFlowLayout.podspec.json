@@ -1,0 +1,22 @@
+{
+  "name": "AlignedCollectionViewFlowLayout",
+  "version": "0.1.0",
+  "summary": "A short description of AlignedCollectionViewFlowLayout.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/web@mischa-hildebrand.de/AlignedCollectionViewFlowLayout",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "web@mischa-hildebrand.de": "mischa.hildebrand@intive-kupferwerk.com"
+  },
+  "source": {
+    "git": "https://github.com/web@mischa-hildebrand.de/AlignedCollectionViewFlowLayout.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "AlignedCollectionViewFlowLayout/Classes/**/*"
+}

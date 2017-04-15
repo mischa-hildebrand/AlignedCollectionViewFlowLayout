@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'AlignedCollectionViewFlowLayout_Example' do
+  pod 'AlignedCollectionViewFlowLayout', :path => '../'
+
+  target 'AlignedCollectionViewFlowLayout_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end

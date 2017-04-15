@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="aGy-r8-Ykq">
+    <device id="retina4_0" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Collection View Controller-->
+        <scene sceneID="GbZ-Zd-nre">
+            <objects>
+                <collectionViewController id="aGy-r8-Ykq" customClass="CollectionViewController" customModule="AlignedCollectionViewFlowLayout_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="OGv-oI-RmC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="CWt-bG-Coe" customClass="AlignedCollectionViewFlowLayout" customModule="AlignedCollectionViewFlowLayout">
+                            <size key="itemSize" width="146" height="42"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="20" minY="50" maxX="20" maxY="50"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="blueCell" id="bTK-yO-fK4" customClass="CollectionViewCell" customModule="AlignedCollectionViewFlowLayout_Example" customModuleProvider="target">
+                                <rect key="frame" x="87" y="50" width="146" height="42"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="146" height="42"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Blue Cell" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dCO-bB-Nit">
+                                            <rect key="frame" x="20" y="10" width="106" height="22"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </view>
+                                <color key="backgroundColor" red="0.090196080509999998" green="0.66666668650000005" blue="0.99215686319999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="dCO-bB-Nit" secondAttribute="bottom" constant="10" id="D5X-yg-yYv"/>
+                                    <constraint firstItem="dCO-bB-Nit" firstAttribute="top" secondItem="bTK-yO-fK4" secondAttribute="top" constant="10" id="OCV-Zg-dtb"/>
+                                    <constraint firstAttribute="trailing" secondItem="dCO-bB-Nit" secondAttribute="trailing" constant="20" id="U9t-Nf-bj6"/>
+                                    <constraint firstItem="dCO-bB-Nit" firstAttribute="leading" secondItem="bTK-yO-fK4" secondAttribute="leading" constant="20" id="XBL-3C-qhs"/>
+                                </constraints>
+                                <size key="customSize" width="146" height="42"/>
+                                <connections>
+                                    <outlet property="label" destination="dCO-bB-Nit" id="HjU-JB-1Vk"/>
+                                </connections>
+                            </collectionViewCell>
+                        </cells>
+                        <connections>
+                            <outlet property="dataSource" destination="aGy-r8-Ykq" id="8Ys-ly-eYi"/>
+                            <outlet property="delegate" destination="aGy-r8-Ykq" id="h1I-2k-fXt"/>
+                        </connections>
+                    </collectionView>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yYI-CH-j49" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="99.375" y="148.94366197183098"/>
+        </scene>
+    </scenes>
+</document>

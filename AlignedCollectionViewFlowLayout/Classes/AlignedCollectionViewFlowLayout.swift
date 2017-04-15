@@ -29,12 +29,12 @@ import UIKit
 
 /// A collection view layout that aligns the cells left or right
 /// just like left- or right-aligned text, depending on the `cellAlignment`.
-class AlignedCollectionViewFlowLayout: UICollectionViewFlowLayout {
+public class AlignedCollectionViewFlowLayout: UICollectionViewFlowLayout {
     
     // MARK: - 🦆 Type definitions
     
     /// Defines an alignment for UI elements.
-    enum HorizontalAlignment {
+    public enum HorizontalAlignment {
         case left
         case right
     }
@@ -55,7 +55,7 @@ class AlignedCollectionViewFlowLayout: UICollectionViewFlowLayout {
     /// Determines if cells are left- or right-aligned in a row.
     ///
     /// - Note: The default is `.left`.
-    var cellAlignment: HorizontalAlignment = .left
+    public var cellAlignment: HorizontalAlignment = .left
     
     /// The vertical axis with respect to which the cells are aligned.
     private var alignmentAxis: HorizontalAlignmentAxis? {
@@ -73,19 +73,19 @@ class AlignedCollectionViewFlowLayout: UICollectionViewFlowLayout {
     
     // MARK: - 👶 Initialization
     
-    init(cellAlignment: HorizontalAlignment = .left) {
+    public init(cellAlignment: HorizontalAlignment = .left) {
         super.init()
         self.cellAlignment = cellAlignment
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
     
     // MARK: - 🅾️ Overrides
     
-    override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+    override public func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         
         // 💡 IDEA:
         // The approach for computing a cell's frame is to create a rectangle that covers the current line.
@@ -125,7 +125,7 @@ class AlignedCollectionViewFlowLayout: UICollectionViewFlowLayout {
         return layoutAttributes
     }
     
-    override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+    override public func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         // We may not change the original layout attributes or UICollectionViewFlowLayout might complain.
         let layoutAttributesObjects = copy(super.layoutAttributesForElements(in: rect))
         layoutAttributesObjects?.forEach({ (layoutAttributes) in

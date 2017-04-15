@@ -1,0 +1,6 @@
+framework module Pods_AlignedCollectionViewFlowLayout_Example {
+  umbrella header "Pods-AlignedCollectionViewFlowLayout_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}
