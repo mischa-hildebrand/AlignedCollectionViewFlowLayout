@@ -4,7 +4,7 @@
 [![License](https://img.shields.io/cocoapods/l/AlignedCollectionViewFlowLayout.svg?style=flat)](http://cocoapods.org/pods/AlignedCollectionViewFlowLayout)
 [![Platform](https://img.shields.io/cocoapods/p/AlignedCollectionViewFlowLayout.svg?style=flat)](http://cocoapods.org/pods/AlignedCollectionViewFlowLayout)
 
-A collection view layout that aligns the cells left or right with a constant spacing between the cells, just like left- or right-aligned text in a document. Other than that, the layout behaves exactly like Apple's [`UICollectionViewFlowLayout`](https://developer.apple.com/reference/uikit/uicollectionviewflowlayout).
+A collection view layout that aligns cells left or right with a constant spacing between them, just like left- or right-aligned text in a document. Other than that, the layout behaves exactly like Apple's [`UICollectionViewFlowLayout`](https://developer.apple.com/reference/uikit/uicollectionviewflowlayout).
 
 ## Available Alignment Options:
 
@@ -57,8 +57,8 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 5. _(Optional)_ If you want your cells to be **right-aligned** just add the following code to your view controller's `viewDidLoad()` method:
 
-let alignedFlowLayout = collectionView?.collectionViewLayout as? AlignedCollectionViewFlowLayout
-alignedFlowLayout?.cellAlignment = .right
+        let alignedFlowLayout = collectionView?.collectionViewLayout as? AlignedCollectionViewFlowLayout
+        alignedFlowLayout?.cellAlignment = .right
 
 ### Setup in code
 
