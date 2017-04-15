@@ -1,6 +1,5 @@
 # AlignedCollectionViewFlowLayout
 
-[![CI Status](http://img.shields.io/travis/web@mischa-hildebrand.de/AlignedCollectionViewFlowLayout.svg?style=flat)](https://travis-ci.org/web@mischa-hildebrand.de/AlignedCollectionViewFlowLayout)
 [![Version](https://img.shields.io/cocoapods/v/AlignedCollectionViewFlowLayout.svg?style=flat)](http://cocoapods.org/pods/AlignedCollectionViewFlowLayout)
 [![License](https://img.shields.io/cocoapods/l/AlignedCollectionViewFlowLayout.svg?style=flat)](http://cocoapods.org/pods/AlignedCollectionViewFlowLayout)
 [![Platform](https://img.shields.io/cocoapods/p/AlignedCollectionViewFlowLayout.svg?style=flat)](http://cocoapods.org/pods/AlignedCollectionViewFlowLayout)
@@ -100,6 +99,9 @@ The vertical spacing between the lines works exactly as in `UICollectionViewFlow
 ## Author
 
 Mischa Hildebrand, web@mischa-hildebrand.de
+
+[![Twitter Follow](https://img.shields.io/twitter/follow/DerHildebrand.svg?style=social&label=Follow)](https://twitter.com/DerHildebrand)
+[![GitHub followers](https://img.shields.io/github/followers/mischa-hildebrand.svg?style=social&label=Follow)](https://github.com/mischa-hildebrand)
 
 ## License
 
