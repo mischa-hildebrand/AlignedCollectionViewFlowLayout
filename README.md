@@ -11,7 +11,6 @@ A collection view layout that aligns the cells left or right with a constant spa
 
 ![Example layout for cellAlignment = .right](Docs/Right-aligned-collection-view-layout.png)
 
-
 ## Usage
 
 Add the file `AlignedCollectionViewFlowLayout.swift` to your Xcode project and you're ready to go:
