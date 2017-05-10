@@ -15,13 +15,14 @@ class CollectionViewController: UICollectionViewController {
     
     let tags1 = ["When you", "eliminate", "the impossible,", "whatever remains,", "however improbable,", "must be", "the truth."]
     let tags2 = ["Of all the souls", "I have", "encountered", "in my travels,", "his", "was the most…", "human."]
+    let tags3 = ["Computers", "make", "excellent", "and", "efficient", "servants", "but", "I", "have", "no", "wish", "to", "serve", "under", "them."]
     
     var dataSource: [[String]] = [[]]
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        dataSource = [tags1, tags2]
+        dataSource = [tags1, tags2, tags3]
         
         // Set up the flow layout's cell alignment:
         let flowLayout = collectionView?.collectionViewLayout as? AlignedCollectionViewFlowLayout

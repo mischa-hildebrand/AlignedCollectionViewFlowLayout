@@ -4,18 +4,33 @@
 [![License](https://img.shields.io/cocoapods/l/AlignedCollectionViewFlowLayout.svg?style=flat)](http://cocoapods.org/pods/AlignedCollectionViewFlowLayout)
 [![Platform](https://img.shields.io/cocoapods/p/AlignedCollectionViewFlowLayout.svg?style=flat)](http://cocoapods.org/pods/AlignedCollectionViewFlowLayout)
 
-A collection view layout that aligns cells left or right with a constant spacing between them, just like left- or right-aligned text in a document. Other than that, the layout behaves exactly like Apple's [`UICollectionViewFlowLayout`](https://developer.apple.com/reference/uikit/uicollectionviewflowlayout).
+A collection view layout that gives you control over the horizontal and vertical alignment of the cells. You can use it to align the cells like words in a left- or right-aligned text and you can specify how the cells are vertically aligned within their rows.
 
-## Available Alignment Options:
+Other than that, the layout behaves exactly like Apple's [`UICollectionViewFlowLayout`](https://developer.apple.com/reference/uikit/uicollectionviewflowlayout). (It's a subclass.)
 
-* `cellAlignment = .left`
+## Available Alignment Options
 
-![Example layout for cellAlignment = .left](Docs/Left-aligned-collection-view-layout.png)
+### Horizontal Alignment:
 
-* `cellAlignment = .right`
+* `horizontalAlignment = .left`
 
-![Example layout for cellAlignment = .right](Docs/Right-aligned-collection-view-layout.png)
+![Example layout for horizontalAlignment = .left](Docs/Left-aligned-collection-view-layout.png)
 
+* `horizontalAlignment = .right`
+
+![Example layout for horizontalAlignment = .right](Docs/Right-aligned-collection-view-layout.png)
+
+* `horizontalAlignment = .justified`
+
+![Example layout for horizontalAlignment = .justified](Docs/Justified-collection-view-layout.png)
+
+### Vertical Alignment:
+
+* `verticalAlignment = .top`
+* `verticalAlignment = .center`
+* `verticalAlignment = .bottom`
+
+_(🚧 Sample images to be added...)_
 
 
 ## Installation
@@ -31,7 +46,7 @@ pod "AlignedCollectionViewFlowLayout"
 
 ### Manual installation:
 
-Simply add the file `AlignedCollectionViewFlowLayout.swift` to your Xcode project and you're ready to go.
+Just add the file `AlignedCollectionViewFlowLayout.swift` to your Xcode project and you're ready to go.
 
 
 ### Example
@@ -53,22 +68,23 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
     ![Screenshot: How to set a custom class for the layout object in Interface Builder](Docs/Screenshot_Interface-Builder_Flow-Layout_Custom-Class.png)
 
-4. Run your app. Your cells will now be left-aligned.
-
-5. _(Optional)_ If you want your cells to be **right-aligned** just add the following code to your view controller's `viewDidLoad()` method:
+4. Add and customize the following code to your view controller's `viewDidLoad()` method:
 
         let alignedFlowLayout = collectionView?.collectionViewLayout as? AlignedCollectionViewFlowLayout
-        alignedFlowLayout?.cellAlignment = .right
+        alignedFlowLayout?.horizontalAlignment = .left
+        alignedFlowLayout?.verticalAlignment = .top
+        
+    If you omit any of the last two lines the default alignment will be used (horizontally justified, vertically centered).
 
 ### Setup in code
 
-1. Create a new `AlignedCollectionViewFlowLayout` object and specify the alignment you want (`.left` or `.right`):
+1. Create a new `AlignedCollectionViewFlowLayout` object and specify the alignment you want:
 
-        let alignedFlowLayout = AlignedCollectionViewFlowLayout(cellAlignment: .left)
+        let alignedFlowLayout = AlignedCollectionViewFlowLayout(horizontalAlignment: .left, verticalAlignment: .top)
 
 2. Either create a new collection view object and and initialize it with `alignedFlowLayout`:
 
-        let collectionView = UICollectionView(frame: bounds, collectionViewLayout: flowLayout)
+        let collectionView = UICollectionView(frame: bounds, collectionViewLayout: alignedFlowLayout)
 
     **or** assign `alignedFlowLayout` to the `collectionViewLayout` property of an existing collection view:
 
@@ -82,7 +98,7 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ### Additional configuration
 
-`AlignedCollectionViewFlowLayout` always distributes the cells horizontally with a constant spacing which is the same for all rows. You can control the spacing with the `minimumInteritemSpacing` property.
+For the `left` and `right` alignment `AlignedCollectionViewFlowLayout` distributes the cells horizontally with a **constant spacing** which is the same for all rows. You can control the spacing with the `minimumInteritemSpacing` property.
 
     alignedFlowLayout.minimumInteritemSpacing = 10
 
