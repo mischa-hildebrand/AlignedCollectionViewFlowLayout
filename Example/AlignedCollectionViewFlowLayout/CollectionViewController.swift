@@ -24,9 +24,8 @@ class CollectionViewController: UICollectionViewController {
         dataSource = [tags1, tags2]
         
         // Set up the flow layout's cell alignment:
-        // (Only needed for right-aligned cells as the default is `.left`.)
         let flowLayout = collectionView?.collectionViewLayout as? AlignedCollectionViewFlowLayout
-        flowLayout?.cellAlignment = .right
+        flowLayout?.horizontalAlignment = .right
         
         // Enable automatic cell-sizing with Auto Layout:
         flowLayout?.estimatedItemSize = .init(width: 100, height: 40)
