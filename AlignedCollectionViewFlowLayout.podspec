@@ -20,7 +20,7 @@ Pod::Spec.new do |s|
   s.description      = 'A collection view layout that gives you control over the horizontal and vertical cell alignment.
                         You can use it to align cells like words in a left- or right-aligned paragraph and
                         to specify how the cells are vertically aligned within their rows.
-                        Other than that, the layout behaves exactly like Apple's UICollectionViewFlowLayout.'
+                        Other than that, the layout behaves exactly like Apple\'s UICollectionViewFlowLayout.'
 
   s.homepage         = 'https://github.com/mischa-hildebrand/AlignedCollectionViewFlowLayout'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
