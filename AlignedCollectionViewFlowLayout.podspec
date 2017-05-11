@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'AlignedCollectionViewFlowLayout'
-  s.version          = '1.0.0'
-  s.summary          = 'A collection view layout that aligns the cells left or right with a constant spacing between them, just like text in a document.'
+  s.version          = '1.1.0'
+  s.summary          = 'A collection view layout that gives you control over the horizontal and vertical alignment of the cells.'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -17,7 +17,10 @@ Pod::Spec.new do |s|
 #   * Write the description between the DESC delimiters below.
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
-  s.description      = 'A collection view layout that aligns the cells left or right with a constant spacing between the cells, just like left- or right-aligned text in a document. Other than that, the layout behaves exactly like Apple\'s UICollectionViewFlowLayout.'
+  s.description      = 'A collection view layout that gives you control over the horizontal and vertical cell alignment.
+                        You can use it to align cells like words in a left- or right-aligned paragraph and
+                        to specify how the cells are vertically aligned within their rows.
+                        Other than that, the layout behaves exactly like Apple's UICollectionViewFlowLayout.'
 
   s.homepage         = 'https://github.com/mischa-hildebrand/AlignedCollectionViewFlowLayout'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
@@ -29,7 +32,7 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '8.0'
 
   s.source_files = 'AlignedCollectionViewFlowLayout/Classes/**/*'
-  
+
   # s.resource_bundles = {
   #   'AlignedCollectionViewFlowLayout' => ['AlignedCollectionViewFlowLayout/Assets/*.png']
   # }
