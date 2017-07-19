@@ -107,7 +107,7 @@ public class AlignedCollectionViewFlowLayout: UICollectionViewFlowLayout {
     ///                          (Default: `.justified`)
     ///   - verticalAlignment:   Specified how the cells are vertically aligned in a row. --
     ///                          (Default: `.center`)
-    init(horizontalAlignment: HorizontalAlignment = .justified, verticalAlignment: VerticalAlignment = .center) {
+    public init(horizontalAlignment: HorizontalAlignment = .justified, verticalAlignment: VerticalAlignment = .center) {
         super.init()
         self.horizontalAlignment = horizontalAlignment
         self.verticalAlignment = verticalAlignment
