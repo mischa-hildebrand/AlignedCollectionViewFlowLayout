@@ -34,6 +34,7 @@ protocol Alignment {}
 public enum HorizontalAlignment: Alignment {
     case left
     case justified
+    case center
     case right
 }
 
@@ -84,6 +85,8 @@ public class AlignedCollectionViewFlowLayout: UICollectionViewFlowLayout {
                 return nil
             }
             return AlignmentAxis(alignment: HorizontalAlignment.right, position: collectionViewWidth - sectionInset.right)
+        case .center:
+            return AlignmentAxis(alignment: HorizontalAlignment.center, position: sectionInset.left)
         default:
             return nil
         }
@@ -230,8 +233,43 @@ public class AlignedCollectionViewFlowLayout: UICollectionViewFlowLayout {
         lineFrame.size.width = lineWidth
         return super.layoutAttributesForElements(in: lineFrame) ?? []
     }
-    
-    /// Copmutes the alignment axis with which to align the items represented by the `layoutAttributes` objects vertically.
+
+    /// Determines the total width of layout attributes objects for all items including minimumLineSpacing.
+    ///
+    /// - Parameter layoutAttributes: The layout attributes for an entire line.
+    /// - Returns: The real content width for all the layout attributes objects representing all items in the same line.
+    fileprivate func contentWidthForLine(with layoutAttributes: [UICollectionViewLayoutAttributes]) -> CGFloat {
+
+        let cellLayoutAttributes = layoutAttributes.filter { $0.representedElementCategory == .cell }
+
+        let itemWidths = cellLayoutAttributes.reduce(0) { $0 + $1.frame.size.width }
+
+        let spacingWidths = minimumLineSpacing * CGFloat(cellLayoutAttributes.count-1)
+
+        return itemWidths + spacingWidths
+    }
+
+    /// Computes the alignment axis with which to align the items represented by the `layoutAttributes` objects vertically.
+    ///
+    /// - Parameter layoutAttributes: The layout attributes objects to be vertically aligned.
+    /// - Returns: The axis with respect to which the layout attributes can be aligned
+    ///            or `nil` if the `layoutAttributes` array is empty.
+    fileprivate func horizontalCenterAlignmentAxis(for layoutAttributes: UICollectionViewLayoutAttributes) -> AlignmentAxis<HorizontalAlignment>? {
+
+        let layoutAttributesInLine = self.layoutAttributes(forItemsInLineWith: layoutAttributes)
+
+        let lineContentWidth = contentWidthForLine(with: layoutAttributesInLine)
+
+        guard let contentWidth = contentWidth else {
+            return nil
+        }
+
+        let position = sectionInset.left + (contentWidth - lineContentWidth)/2
+        return AlignmentAxis(alignment: HorizontalAlignment.center, position: position)
+    }
+
+
+    /// Computes the alignment axis with which to align the items represented by the `layoutAttributes` objects vertically.
     ///
     /// - Parameter layoutAttributes: The layout attributes objects to be vertically aligned.
     /// - Returns: The axis with respect to which the layout attributes can be aligned
@@ -347,6 +385,8 @@ fileprivate extension UICollectionViewLayoutAttributes {
             frame.origin.x = alignmentAxis.position
         case .right:
             frame.origin.x = alignmentAxis.position - frame.size.width
+        case .center:
+            frame.origin.x = alignmentAxis.position
         default:
             break
         }
@@ -413,7 +453,18 @@ fileprivate extension UICollectionViewLayoutAttributes {
             } else {
                 alignToFollowingItem(collectionViewLayout: collectionViewLayout)
             }
-            
+
+        case .center:
+            if isRepresentingFirstItemInLine(collectionViewLayout: collectionViewLayout) {
+                guard let alignmentAxisForLine = collectionViewLayout.horizontalCenterAlignmentAxis(for: self) else {
+                    return
+                }
+                align(toAlignmentAxis: alignmentAxisForLine)
+
+            } else {
+                alignToPrecedingItem(collectionViewLayout: collectionViewLayout)
+            }
+
         default:
             return
         }
