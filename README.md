@@ -8,6 +8,10 @@ A collection view layout that gives you control over the horizontal and vertical
 
 Other than that, the layout behaves exactly like Apple's [`UICollectionViewFlowLayout`](https://developer.apple.com/reference/uikit/uicollectionviewflowlayout). (It's a subclass.)
 
+### ℹ️ Important:
+
+`AlignedCollectionViewFlowLayout` was developed with a "**tag view**" in mind, i.e. a collection view that displays a limited number of items with a relatively simple layout. It works perfectly for this use case. While it also does its job for a large number of items and more complex cell layouts **scrolling might become laggy** in this case. This is due to the fact the layout needs to recursively obtain layout attributes from its superclass and cannot be avoided. If you experience unacceptable lagginess please consider other alternatives.
+
 ## Available Alignment Options
 
 You can use _any_ combination of horizontal and vertical alignment to achieve your desired layout.
