@@ -27,10 +27,16 @@ Other than that, the layout behaves exactly like Apple's [`UICollectionViewFlowL
 ### Vertical Alignment:
 
 * `verticalAlignment = .top`
+
+![Example layout for verticalAlignment = .top](Docs/Top-aligned-collection-view-layout.png)
+
 * `verticalAlignment = .center`
+
+![Example layout for verticalAlignment = .center](Docs/Vertically-centered-collection-view-layout.png)
+
 * `verticalAlignment = .bottom`
 
-_(🚧 Sample images to be added...)_
+![Example layout for verticalAlignment = .bottom](Docs/Bottom-aligned-collection-view-layout.png)
 
 
 ## Installation
