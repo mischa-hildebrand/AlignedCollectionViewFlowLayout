@@ -83,6 +83,8 @@ To run the example project, clone the repo, and run `pod install` from the Examp
         alignedFlowLayout?.verticalAlignment = .top
         
     If you omit any of the last two lines the default alignment will be used (horizontally justified, vertically centered).
+    
+    💡 **Pro Tip:** Instead of type-casting the layout as shown above you can also drag an outlet from the collection view layout object to your view controller.
 
 ### Setup in code
 
