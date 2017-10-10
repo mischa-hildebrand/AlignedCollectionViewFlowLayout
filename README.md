@@ -82,9 +82,11 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 4. Add and customize the following code to your view controller's `viewDidLoad()` method:
 
-        let alignedFlowLayout = collectionView?.collectionViewLayout as? AlignedCollectionViewFlowLayout
-        alignedFlowLayout?.horizontalAlignment = .left
-        alignedFlowLayout?.verticalAlignment = .top
+    ```Swift
+    let alignedFlowLayout = collectionView?.collectionViewLayout as? AlignedCollectionViewFlowLayout
+    alignedFlowLayout?.horizontalAlignment = .left
+    alignedFlowLayout?.verticalAlignment = .top
+    ```
         
     If you omit any of the last two lines the default alignment will be used (horizontally justified, vertically centered).
     
@@ -94,15 +96,21 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 1. Create a new `AlignedCollectionViewFlowLayout` object and specify the alignment you want:
 
-        let alignedFlowLayout = AlignedCollectionViewFlowLayout(horizontalAlignment: .left, verticalAlignment: .top)
+    ```Swift
+    let alignedFlowLayout = AlignedCollectionViewFlowLayout(horizontalAlignment: .left, verticalAlignment: .top)
+    ```
 
 2. Either create a new collection view object and and initialize it with `alignedFlowLayout`:
 
-        let collectionView = UICollectionView(frame: bounds, collectionViewLayout: alignedFlowLayout)
+    ```Swift
+    let collectionView = UICollectionView(frame: bounds, collectionViewLayout: alignedFlowLayout)
+    ```
 
     **or** assign `alignedFlowLayout` to the `collectionViewLayout` property of an existing collection view:
-
-        yourExistingCollectionView.collectionViewLayout = alignedFlowLayout
+    
+    ```Swift
+    yourExistingCollectionView.collectionViewLayout = alignedFlowLayout
+    ```
 
 3. Implement your collection view's data source.
 
@@ -114,13 +122,17 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 For the `left` and `right` alignment `AlignedCollectionViewFlowLayout` distributes the cells horizontally with a **constant spacing** which is the same for all rows. You can control the spacing with the `minimumInteritemSpacing` property.
 
-    alignedFlowLayout.minimumInteritemSpacing = 10
+```Swift
+alignedFlowLayout.minimumInteritemSpacing = 10
+```
 
 Despite its name (which originates from its superclass `UICollectionViewFlowLayout`) this property doesn't describe a _minimum_ spacing but the **exact** spacing between the cells.
 
 The vertical spacing between the lines works exactly as in `UICollectionViewFlowLayout`:
 
-    alignedFlowLayout.minimumLineSpacing = 10
+```Swift
+alignedFlowLayout.minimumLineSpacing = 10
+```
 
 ---
 
