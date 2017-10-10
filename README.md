@@ -10,6 +10,8 @@ Other than that, the layout behaves exactly like Apple's [`UICollectionViewFlowL
 
 ## Available Alignment Options
 
+You can use _any_ combination of horizontal and vertical alignment to achieve your desired layout.
+
 ### Horizontal Alignment:
 
 * `horizontalAlignment = .left`
