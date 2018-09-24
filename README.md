@@ -1,6 +1,7 @@
 # AlignedCollectionViewFlowLayout
 
 [![Version](https://img.shields.io/cocoapods/v/AlignedCollectionViewFlowLayout.svg?style=flat)](http://cocoapods.org/pods/AlignedCollectionViewFlowLayout)
+[![CocoaPods](https://img.shields.io/cocoapods/dt/AlignedCollectionViewFlowLayout.svg)](AlignedCollectionViewFlowLayout)
 [![License](https://img.shields.io/cocoapods/l/AlignedCollectionViewFlowLayout.svg?style=flat)](http://cocoapods.org/pods/AlignedCollectionViewFlowLayout)
 [![Platform](https://img.shields.io/cocoapods/p/AlignedCollectionViewFlowLayout.svg?style=flat)](http://cocoapods.org/pods/AlignedCollectionViewFlowLayout)
 
