@@ -32,7 +32,15 @@ import UIKit
 /// An abstract protocol that defines an alignment.
 protocol Alignment {}
 
-/// Defines an alignment for UI elements.
+/**
+ Defines an alignment for UI elements.
+ 
+ - Note:
+ To support semantics for Right-to-Left language Users, use `leading` or `trailing`
+ just like you do with Autolayout.
+ 
+ If you want to force frame based `left` or `right` alighment, use `left` or `right`
+ */
 public enum HorizontalAlignment: Alignment {
     case left
     case justified
