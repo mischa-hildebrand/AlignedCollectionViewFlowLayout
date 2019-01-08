@@ -37,6 +37,20 @@ public enum HorizontalAlignment: Alignment {
     case left
     case justified
     case right
+    case leading
+    case trailing
+
+    /// trailing becomes right, and leading becomes left for RTL languages
+    var swapForRTL: HorizontalAlignment {
+        switch self {
+        case .leading:
+            return isRTL ?.right : .left
+        case .trailing:
+            return isRTL ? .left : .right
+        default:
+            return self
+        }
+    }
 }
 
 /// Defines a vertical alignment for UI elements.
@@ -78,7 +92,7 @@ open class AlignedCollectionViewFlowLayout: UICollectionViewFlowLayout {
     /// The vertical axis with respect to which the cells are horizontally aligned.
     /// For a `justified` alignment the alignment axis is not defined and this value is `nil`.
     fileprivate var alignmentAxis: AlignmentAxis<HorizontalAlignment>? {
-        switch horizontalAlignment {
+        switch horizontalAlignment.swapForRTL {
         case .left:
             return AlignmentAxis(alignment: HorizontalAlignment.left, position: sectionInset.left)
         case .right:
@@ -400,7 +414,7 @@ fileprivate extension UICollectionViewLayoutAttributes {
             return
         }
         
-        switch collectionViewLayout.horizontalAlignment {
+        switch collectionViewLayout.horizontalAlignment.swapForRTL {
             
         case .left:
             if isRepresentingFirstItemInLine(collectionViewLayout: collectionViewLayout) {
@@ -429,4 +443,8 @@ fileprivate extension UICollectionViewLayoutAttributes {
         align(toAlignmentAxis: alignmentAxis)
     }
     
+}
+
+fileprivate var isRTL: Bool {
+    return UIApplication.shared.userInterfaceLayoutDirection == .rightToLeft
 }

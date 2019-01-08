@@ -26,7 +26,7 @@ class CollectionViewController: UICollectionViewController {
         
         // Set up the flow layout's cell alignment:
         let flowLayout = collectionView?.collectionViewLayout as? AlignedCollectionViewFlowLayout
-        flowLayout?.horizontalAlignment = .right
+        flowLayout?.horizontalAlignment = .trailing
         
         // Enable automatic cell-sizing with Auto Layout:
         flowLayout?.estimatedItemSize = .init(width: 100, height: 40)
