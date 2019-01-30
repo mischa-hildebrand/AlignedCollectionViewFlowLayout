@@ -27,38 +27,19 @@
 
 import UIKit
 
+
 // MARK: - 🦆 Type definitions
 
 /// An abstract protocol that defines an alignment.
 protocol Alignment {}
 
-/**
- Defines an alignment for UI elements.
- 
- - Note:
- To support semantics for Right-to-Left language Users, use `leading` or `trailing`
- just like you do with Autolayout.
- 
- If you want to force frame based `left` or `right` alighment, use `left` or `right`
- */
+/// Defines a horizontal alignment for UI elements.
 public enum HorizontalAlignment: Alignment {
     case left
-    case justified
     case right
     case leading
     case trailing
-
-    /// trailing becomes right, and leading becomes left for RTL languages
-    var swapForRTL: HorizontalAlignment {
-        switch self {
-        case .leading:
-            return isRTL ?.right : .left
-        case .trailing:
-            return isRTL ? .left : .right
-        default:
-            return self
-        }
-    }
+    case justified
 }
 
 /// Defines a vertical alignment for UI elements.
@@ -66,6 +47,14 @@ public enum VerticalAlignment: Alignment {
     case top
     case center
     case bottom
+}
+
+/// A horizontal alignment used internally by `AlignedCollectionViewFlowLayout`
+/// to layout the items, after resolving layout direction specifics.
+private enum EffectiveHorizontalAlignment: Alignment {
+    case left
+    case right
+    case justified
 }
 
 /// Describes an axis with respect to which items can be aligned.
@@ -81,6 +70,9 @@ private struct AlignmentAxis<A: Alignment> {
 }
 
 
+
+// MARK: - Flow Layout
+
 /// A `UICollectionViewFlowLayout` subclass that gives you control
 /// over the horizontal and vertical alignment of the cells.
 /// You can use it to align the cells like words in a left- or right-aligned text
@@ -92,15 +84,57 @@ open class AlignedCollectionViewFlowLayout: UICollectionViewFlowLayout {
     /// Determines how the cells are horizontally aligned in a row.
     /// - Note: The default is `.justified`.
     public var horizontalAlignment: HorizontalAlignment = .justified
-    
+
     /// Determines how the cells are vertically aligned in a row.
     /// - Note: The default is `.center`.
     public var verticalAlignment: VerticalAlignment = .center
+
+    /// The `horizontalAlignment` with its layout direction specifics resolved,
+    /// i.e. `.leading` and `.trailing` alignments are mapped to `.left` or `right`,
+    /// depending on the current layout direction.
+    fileprivate var effectiveHorizontalAlignment: EffectiveHorizontalAlignment {
+
+        var trivialMapping: [HorizontalAlignment: EffectiveHorizontalAlignment] {
+            return [
+                .left: .left,
+                .right: .right,
+                .justified: .justified
+            ]
+        }
+
+        let layoutDirection = UIApplication.shared.userInterfaceLayoutDirection
+
+        switch layoutDirection {
+        case .leftToRight:
+            switch horizontalAlignment {
+            case .leading:
+                return .left
+            case .trailing:
+                return .right
+            default:
+                break
+            }
+
+        case .rightToLeft:
+            switch horizontalAlignment {
+            case .leading:
+                return .right
+            case .trailing:
+                return .left
+            default:
+                break
+            }
+        }
+
+        // It's safe to force-unwrap as `.leading` and `.trailing` are covered
+        // above and the `trivialMapping` dictionary contains all other keys.
+        return trivialMapping[horizontalAlignment]!
+    }
     
     /// The vertical axis with respect to which the cells are horizontally aligned.
     /// For a `justified` alignment the alignment axis is not defined and this value is `nil`.
     fileprivate var alignmentAxis: AlignmentAxis<HorizontalAlignment>? {
-        switch horizontalAlignment.swapForRTL {
+        switch effectiveHorizontalAlignment {
         case .left:
             return AlignmentAxis(alignment: HorizontalAlignment.left, position: sectionInset.left)
         case .right:
@@ -302,6 +336,7 @@ open class AlignedCollectionViewFlowLayout: UICollectionViewFlowLayout {
 }
 
 
+
 // MARK: - 👷 Layout attributes helpers
 
 fileprivate extension UICollectionViewLayoutAttributes {
@@ -422,7 +457,7 @@ fileprivate extension UICollectionViewLayoutAttributes {
             return
         }
         
-        switch collectionViewLayout.horizontalAlignment.swapForRTL {
+        switch collectionViewLayout.effectiveHorizontalAlignment {
             
         case .left:
             if isRepresentingFirstItemInLine(collectionViewLayout: collectionViewLayout) {
@@ -451,8 +486,4 @@ fileprivate extension UICollectionViewLayoutAttributes {
         align(toAlignmentAxis: alignmentAxis)
     }
     
-}
-
-fileprivate var isRTL: Bool {
-    return UIApplication.shared.userInterfaceLayoutDirection == .rightToLeft
 }
