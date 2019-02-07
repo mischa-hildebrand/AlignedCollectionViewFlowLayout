@@ -31,6 +31,18 @@ You can use _any_ combination of horizontal and vertical alignment to achieve yo
 
 ![Example layout for horizontalAlignment = .justified](Docs/Justified-collection-view-layout.png)
 
+* `horizontalAlignment = .leading`
+
+  Renders as either `.left` or `.right`, depending on the user's _layout direction_ ([UIApplication.shared.userInterfaceLayoutDirection](https://developer.apple.com/documentation/uikit/uiapplication/1623025-userinterfacelayoutdirection)):
+  * `.leftToRight` → `.left` 
+  * `.rightToLeft` → `.right` 
+ 
+* `horizontalAlignment = .trailing`
+
+  Renders as either `.left` or `.right`, depending on the user's _layout direction_ ([UIApplication.shared.userInterfaceLayoutDirection](https://developer.apple.com/documentation/uikit/uiapplication/1623025-userinterfacelayoutdirection)).
+  * `.leftToRight` → `.right` 
+  * `.rightToLeft` → `.left` 
+
 ### Vertical Alignment:
 
 * `verticalAlignment = .top`
