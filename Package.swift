@@ -8,7 +8,8 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "AlignedCollectionViewFlowLayout"
+            name: "AlignedCollectionViewFlowLayout",
+            path: "AlignedCollectionViewFlowLayout"
         )
     ]
 )
