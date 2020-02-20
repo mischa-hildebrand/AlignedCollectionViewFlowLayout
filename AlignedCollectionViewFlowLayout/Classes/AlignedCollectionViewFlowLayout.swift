@@ -69,7 +69,12 @@ private struct AlignmentAxis<A: Alignment> {
     let position: CGFloat
 }
 
+// MARK: - AlignedCollectionViewFlowLayoutDelegate
 
+/// If you want to use different inherit item spacing, you can use this delegation.
+public protocol AlignedCollectionViewFlowLayoutDelegate: AnyObject {
+    func minimumItemSpacing(indexPath at: IndexPath) -> CGFloat
+}
 
 // MARK: - Flow Layout
 
@@ -81,19 +86,22 @@ open class AlignedCollectionViewFlowLayout: UICollectionViewFlowLayout {
     
     // MARK: - 🔶 Properties
     
+    /// Customizing delegate
+    public weak var delegate: AlignedCollectionViewFlowLayoutDelegate?
+    
     /// Determines how the cells are horizontally aligned in a row.
     /// - Note: The default is `.justified`.
     public var horizontalAlignment: HorizontalAlignment = .justified
-
+    
     /// Determines how the cells are vertically aligned in a row.
     /// - Note: The default is `.center`.
     public var verticalAlignment: VerticalAlignment = .center
-
+    
     /// The `horizontalAlignment` with its layout direction specifics resolved,
     /// i.e. `.leading` and `.trailing` alignments are mapped to `.left` or `right`,
     /// depending on the current layout direction.
     fileprivate var effectiveHorizontalAlignment: EffectiveHorizontalAlignment {
-
+        
         var trivialMapping: [HorizontalAlignment: EffectiveHorizontalAlignment] {
             return [
                 .left: .left,
@@ -101,9 +109,9 @@ open class AlignedCollectionViewFlowLayout: UICollectionViewFlowLayout {
                 .justified: .justified
             ]
         }
-
+        
         let layoutDirection = UIApplication.shared.userInterfaceLayoutDirection
-
+        
         switch layoutDirection {
         case .leftToRight:
             switch horizontalAlignment {
@@ -114,7 +122,7 @@ open class AlignedCollectionViewFlowLayout: UICollectionViewFlowLayout {
             default:
                 break
             }
-
+            
         case .rightToLeft:
             switch horizontalAlignment {
             case .leading:
@@ -125,7 +133,7 @@ open class AlignedCollectionViewFlowLayout: UICollectionViewFlowLayout {
                 break
             }
         }
-
+        
         // It's safe to force-unwrap as `.leading` and `.trailing` are covered
         // above and the `trivialMapping` dictionary contains all other keys.
         return trivialMapping[horizontalAlignment]!
@@ -154,7 +162,6 @@ open class AlignedCollectionViewFlowLayout: UICollectionViewFlowLayout {
         }
         return collectionViewWidth - sectionInset.left - sectionInset.right
     }
-    
     
     // MARK: - 👶 Initialization
     
@@ -332,7 +339,6 @@ open class AlignedCollectionViewFlowLayout: UICollectionViewFlowLayout {
     private func copy(_ layoutAttributesArray: [UICollectionViewLayoutAttributes]?) -> [UICollectionViewLayoutAttributes]? {
         return layoutAttributesArray?.map{ $0.copy() } as? [UICollectionViewLayoutAttributes]
     }
-    
 }
 
 
@@ -428,7 +434,7 @@ fileprivate extension UICollectionViewLayoutAttributes {
     ///
     /// - Parameter collectionViewLayout: The layout on which to perfom the calculations.
     private func alignToPrecedingItem(collectionViewLayout: AlignedCollectionViewFlowLayout) {
-        let itemSpacing = collectionViewLayout.minimumInteritemSpacing
+        let itemSpacing = collectionViewLayout.delegate?.minimumItemSpacing(indexPath: precedingIndexPath) ?? collectionViewLayout.minimumInteritemSpacing
         
         if let precedingItemAttributes = collectionViewLayout.layoutAttributesForItem(at: precedingIndexPath) {
             frame.origin.x = precedingItemAttributes.frame.maxX + itemSpacing
@@ -440,7 +446,7 @@ fileprivate extension UICollectionViewLayoutAttributes {
     ///
     /// - Parameter collectionViewLayout: The layout on which to perfom the calculations.
     private func alignToFollowingItem(collectionViewLayout: AlignedCollectionViewFlowLayout) {
-        let itemSpacing = collectionViewLayout.minimumInteritemSpacing
+        let itemSpacing = collectionViewLayout.delegate?.minimumItemSpacing(indexPath: followingIndexPath) ?? collectionViewLayout.minimumInteritemSpacing
         
         if let followingItemAttributes = collectionViewLayout.layoutAttributesForItem(at: followingIndexPath) {
             frame.origin.x = followingItemAttributes.frame.minX - itemSpacing - frame.size.width
@@ -485,5 +491,4 @@ fileprivate extension UICollectionViewLayoutAttributes {
         let alignmentAxis = collectionViewLayout.verticalAlignmentAxis(for: self)
         align(toAlignmentAxis: alignmentAxis)
     }
-    
 }
