@@ -147,6 +147,21 @@ The vertical spacing between the lines works exactly as in `UICollectionViewFlow
 alignedFlowLayout.minimumLineSpacing = 10
 ```
 
+**Changing item spacing for specific section**
+You can define `minimumInteritemSpacing` for specific section using with `AlignedCollectionViewFlowLayoutDelegate`.
+
+```swift
+extension YourCollectionViewController: AlignedCollectionViewFlowLayoutDelegate {
+    func minimumItemSpacing(indexPath at: IndexPath) -> CGFloat {
+        if at.section == 0 {
+            return 10
+        }
+        
+        return 20
+    }
+}
+```
+
 ---
 
 ### Enjoy! 😎
