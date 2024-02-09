@@ -319,10 +319,10 @@ open class AlignedCollectionViewFlowLayout: UICollectionViewFlowLayout {
     ///
     /// - Parameter currentLayoutAttributes: The layout attributes representing the item to be vertically aligned.
     /// - Returns: The axis with respect to which the item can be aligned.
-    fileprivate func verticalAlignmentAxis(for currentLayoutAttributes: UICollectionViewLayoutAttributes) -> AlignmentAxis<VerticalAlignment> {
+    fileprivate func verticalAlignmentAxis(for currentLayoutAttributes: UICollectionViewLayoutAttributes) -> AlignmentAxis<VerticalAlignment>? {
         let layoutAttributesInLine = layoutAttributes(forItemsInLineWith: currentLayoutAttributes)
         // It's okay to force-unwrap here because we pass a non-empty array.
-        return verticalAlignmentAxisForLine(with: layoutAttributesInLine)!
+        return verticalAlignmentAxisForLine(with: layoutAttributesInLine)
     }
     
     /// Creates a deep copy of the passed array by copying all its items.
@@ -482,7 +482,7 @@ fileprivate extension UICollectionViewLayoutAttributes {
     ///
     /// - Parameter collectionViewLayout: The layout providing the alignment information.
     func alignVertically(collectionViewLayout: AlignedCollectionViewFlowLayout) {
-        let alignmentAxis = collectionViewLayout.verticalAlignmentAxis(for: self)
+        guard let alignmentAxis = collectionViewLayout.verticalAlignmentAxis(for: self) else { return }
         align(toAlignmentAxis: alignmentAxis)
     }
     
